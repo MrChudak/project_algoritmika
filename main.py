@@ -1,57 +1,7 @@
-# # from PyQt5.QtCore import Qt
 
-# # from PyQt5.QtWidgets import QApplication, QWidget
-
-# # app = QApplication([])
-
-
-# # class My_widget(QWidget):
-# #     def __init__(self):
-# #         super().__init__()
-
-# import matplotlib as mlp
-
-# import matplotlib.pyplot as plt
-
-# import numpy as np
-
-
-
-# # list_x = []
-# # list_y = []
-# # x = -10
-# # for i in range(20):
-    
-# #     list_x.append(x)
-# #     y = ((x + 3) ** 2) - 12
-# #     list_y.append(y)
-# #     x += 1
-# # fig, ax = plt.subplots()
-# # ax.plot(list_x, list_y)
-
-
-# # ax.set_xlabel('текст под абсцисой')
-# # ax.set_ylabel('текст у ординаты')
-# # ax.set_title('заголовок')
-# # ax.legend(9)
-
-# fig = plt.figure()
-
-# fig.suptitle(r'$\alpha^1 > \beta_i$')
-
-# plt.show()
-# print('start')
-
-
-
-
-
-# print('end')
-
-
-
+# Источник кода: https://dev-gang.ru/article/python-i-pyqt-sozdanie-menu-panelei-instrumentov-i-strok-sostojanija-l7ubf6mm7n/
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel, QMenuBar, QMenu, QToolBar
+from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel, QMenuBar, QMenu, QToolBar, QAction
 import sys
 
 
@@ -69,6 +19,7 @@ class Window(QMainWindow):
         self.setCentralWidget(self.central_Label)
 
 
+        self._createAction()
         self._createMenuBar()
         self._createToolBars()
 
@@ -76,11 +27,27 @@ class Window(QMainWindow):
     def _createMenuBar(self):
         menuBar = self.menuBar()
 
-        fileMenu = QMenu("File", self) # ! "&amp" - не работает
-        menuBar.addMenu(fileMenu)
+        # fileMenu = QMenu("File", self) # ! "&amp" - не работает
+        # menuBar.addMenu(fileMenu)
+        # fileMenu.addAction(self.NewAction)
+        # fileMenu.addAction(self.openAction)
+        # fileMenu.addAction(self.saveAction)
+        # fileMenu.addAction(self.exitAction)
 
-        editMenu = menuBar.addMenu('Edit')
-        helpMenu = menuBar.addMenu('Help')
+        # editMenu = menuBar.addMenu('Edit')
+        # editMenu.addAction(self.copyAction)
+        # editMenu.addAction(self.pasteAction)
+        # editMenu.addAction(self.cutAction)
+
+
+        helpMenu = menuBar.addMenu('+')
+        helpMenu.addAction(self.helpcontent)
+        helpMenu.addAction(self.aboutAction)
+        
+
+        geometryMenu = helpMenu.addMenu('Фигура')
+        geometryMenu.addAction('3D фигура')
+        geometryMenu.addAction('2D фигура')
 
 
     def _createToolBars(self):
@@ -96,6 +63,31 @@ class Window(QMainWindow):
         helpToolBar = QToolBar('Help', self)
         self.addToolBar(Qt.LeftToolBarArea, helpToolBar)
 
+    
+    def _createAction(self):
+
+        self.NewAction = QAction(self)
+
+        self.NewAction.setText('New')
+        self.openAction = QAction('open', self)
+        self.saveAction = QAction('save', self)
+        self.exitAction = QAction('exit', self)
+        self.copyAction = QAction('copy', self)
+        self.pasteAction = QAction('paste', self)
+        self.cutAction = QAction('cut', self)
+        self.helpcontent = QAction('График', self)
+        self.aboutAction = QAction('Текст', self)
+        # self.geometryAction = QAction('Фигура', self)
+
+
+
+
+
+    def test_god(self):
+        menuBar = self.menuBar()
+        fileMenu = QMenu("File", self)
+        menuBar.addMenu(fileMenu)
+
 
 
 
@@ -104,6 +96,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     mw = Window()
     mw.show()
+    # mw.helpMenu.clicked.connect(mw.test_god())
     sys.exit(app.exec_())
 
 
