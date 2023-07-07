@@ -22,6 +22,7 @@ class Window(QMainWindow):
         self._createAction()
         self._createMenuBar()
         self._createToolBars()
+        self._connectActions()
 
 
     def _createMenuBar(self):
@@ -83,10 +84,16 @@ class Window(QMainWindow):
 
 
 
+
     def test_god(self):
-        menuBar = self.menuBar()
+        # menuBar = self.menuBar()
         fileMenu = QMenu("File", self)
-        menuBar.addMenu(fileMenu)
+        # self.menuBar().removeMenu(helpMenu)
+        self.menuBar().addMenu(fileMenu)
+
+
+    def _connectActions(self):
+        self.aboutAction.triggered.connect(self.test_god)
 
 
 
