@@ -1,4 +1,3 @@
-
 # Источник кода: https://dev-gang.ru/article/python-i-pyqt-sozdanie-menu-panelei-instrumentov-i-strok-sostojanija-l7ubf6mm7n/
 from PyQt5.QtCore import Qt, QUrl
 # from PyQt5.QtWebKitWidgets import QWebView
@@ -190,86 +189,6 @@ if __name__ == '__main__':
     mw.show()
     # mw.helpMenu.clicked.connect(mw.test_god())
     sys.exit(app.exec_())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
